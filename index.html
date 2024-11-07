@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADOVICH</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noah:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Размер иконок */
+        .icon {
+            width: 20px;
+            height: 20px;
+            margin-left: 8px;
+        }
+
+        /*
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 1000;
+        }
+        .popup button {
+            background-color: #ff0050;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop id="background-video">
+        <source src="background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="container">
+        <div class="left-column">
+            <div class="avatar">
+                <img src="avatar.jpg" alt="Avatar">
+            </div>
+            <div class="text-content">
+                <h1 class="name">ADOVICH</h1>
+                <p class="description">Yo, me and my social networks</p>
+            </div>
+        </div>
+
+        <div class="right-column">
+            <div class="links">
+                <a href="https://www.youtube.com/@adov1ch" class="button" style="background: linear-gradient(45deg, #FF0000, #FF4500);">YouTube <img src="https://cdn-icons-png.flaticon.com/512/1384/1384028.png" class="icon" alt="YouTube"></a>
+                <a href="https://t.me/SwapMaterial" class="button" style="background: linear-gradient(45deg, #4d8cf4, #1f7aff);">Swap Material <img src="https://cdn-icons-png.flaticon.com/512/2111/2111708.png" class="icon" alt="Telegram"></a>
+                <a href="https://t.me/EditCountrySWP" class="button" style="background: linear-gradient(45deg, #4d8cf4, #1f7aff);">Edit Country <img src="https://cdn-icons-png.flaticon.com/512/2111/2111708.png" class="icon" alt="Telegram"></a>
+                <a href="https://t.me/adovich_edit" class="button" style="background: linear-gradient(45deg, #4d8cf4, #1f7aff);">Telegram Channel <img src="https://cdn-icons-png.flaticon.com/512/2111/2111708.png" class="icon" alt="Telegram Channel"></a>
+                <a href="https://vk.com/astemird" class="button" style="background: linear-gradient(45deg, #4c75a3, #365899);">VK <img src="https://cdn-icons-png.flaticon.com/512/3128/3128244.png" class="icon" alt="VK"></a>
+                <a href="https://discord.gg/KYseb8NEt3" class="button" style="background: linear-gradient(45deg, #7289da, #5865f2);" onclick="showPopup()">Discord <img src="https://cdn-icons-png.flaticon.com/512/4945/4945914.png" class="icon" alt="Discord"></a>
+                <a href="https://steamcommunity.com/id/0ldt0wnroad/" class="button" style="background: linear-gradient(45deg, #1b2838, #2a475e);">Steam <img src="https://cdn-icons-png.flaticon.com/512/3670/3670382.png" class="icon" alt="Steam"></a>
+                <a href="https://www.tiktok.com/@adovich" class="button" style="background: linear-gradient(45deg, #ff0050, #ff2d85);">TikTok <img src="https://cdn-icons-png.flaticon.com/512/3046/3046127.png" class="icon" alt="TikTok"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup" id="discordPopup">
+        <p>My discord @adovich</p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+
+    <script>
+        function showPopup() {
+            document.getElementById('discordPopup').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('discordPopup').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
