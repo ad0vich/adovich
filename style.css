@@ -1,46 +1,272 @@
-:root {
-    --background-start: #ff8c00;
-    --background-end: #ff5722;
-    --text-primary: #ffffff;
-    --text-secondary: #cccccc;
-    --shadow-color: rgba(0, 0, 0, 0.5);
-
-    --color-telegram-start: #4d8cf4;
-    --color-telegram-end: #1f7aff;
-    --color-tiktok-start: #ff0050;
-    --color-tiktok-end: #ff2d85;
-    --color-discord-start: #7289da;
-    --color-discord-end: #5865f2;
-    --color-steam-start: #1b2838;
-    --color-steam-end: #2a475e;
-}
-
-body {
-    font-family: 'Noah', sans-serif;
+* {
     margin: 0;
-    color: var(--text-primary);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, var(--background-start), var(--background-end));
-    padding: 20px;
+    padding: 0;
     box-sizing: border-box;
 }
 
-.container {
+body {
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 50px;
-    animation: fadeIn 1s ease-in-out;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+    background-color: #667eea;
 }
 
-@keyframes fadeIn {
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    z-index: -1;
+    will-change: transform;
+}
+
+@keyframes gradientShift {
+    0% { transform: translateX(0%); }
+    50% { transform: translateX(-25%); }
+    100% { transform: translateX(0%); }
+}
+
+.stars,
+.stars-2,
+.stars-3 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.stars {
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, white, transparent),
+        radial-gradient(2px 2px at 60px 70px, white, transparent),
+        radial-gradient(1px 1px at 50px 50px, white, transparent),
+        radial-gradient(1px 1px at 130px 80px, white, transparent),
+        radial-gradient(2px 2px at 90px 10px, white, transparent);
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: twinkle 3s ease-in-out infinite;
+    opacity: 0.5;
+}
+
+.stars-2 {
+    background-image: 
+        radial-gradient(1px 1px at 100px 120px, white, transparent),
+        radial-gradient(1px 1px at 150px 160px, white, transparent),
+        radial-gradient(1px 1px at 80px 180px, white, transparent);
+    background-repeat: repeat;
+    background-size: 250px 250px;
+    animation: twinkle 4s ease-in-out infinite reverse;
+    opacity: 0.3;
+}
+
+.stars-3 {
+    background-image: 
+        radial-gradient(1px 1px at 170px 90px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 40px 140px, rgba(255,255,255,0.8), transparent);
+    background-repeat: repeat;
+    background-size: 300px 300px;
+    animation: twinkle 5s ease-in-out infinite;
+    opacity: 0.4;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+}
+
+.glow {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+    animation: floatGlow 10s ease-in-out infinite;
+}
+
+.glow-1 {
+    width: 600px;
+    height: 600px;
+    background: rgba(102, 126, 234, 0.4);
+    top: -200px;
+    left: -200px;
+    animation-delay: 0s;
+}
+
+.glow-2 {
+    width: 500px;
+    height: 500px;
+    background: rgba(240, 147, 251, 0.4);
+    bottom: -150px;
+    right: -150px;
+    animation-delay: 3s;
+}
+
+.glow-3 {
+    width: 400px;
+    height: 400px;
+    background: rgba(79, 172, 254, 0.4);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: 6s;
+}
+
+@keyframes floatGlow {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(50px, -50px) scale(1.1);
+    }
+    66% {
+        transform: translate(-30px, 30px) scale(0.9);
+    }
+}
+
+.card-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 520px;
+    animation: cardEntrance 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes cardEntrance {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: scale(0.8) translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.profile-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(30px) saturate(180%);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 32px;
+    padding: 40px 30px;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        0 0 100px rgba(255, 255, 255, 0.1),
+        inset 0 0 80px rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: rotateGlow 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes rotateGlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.avatar-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    animation: avatarPop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s both;
+}
+
+@keyframes avatarPop {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.avatar-border {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    padding: 5px;
+    background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #4facfe);
+    background-size: 300% 300%;
+    border-radius: 50%;
+    animation: rotateBorder 6s linear infinite;
+    box-shadow: 0 0 40px rgba(102, 126, 234, 0.6);
+}
+
+@keyframes rotateBorder {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(255, 255, 255, 0.9);
+    transition: transform 0.3s ease;
+}
+
+.avatar-border:hover .avatar {
+    transform: scale(1.05);
+}
+
+.status-dot {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 22px;
+    height: 22px;
+    background: linear-gradient(135deg, #4ade80, #22c55e);
+    border: 4px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(74, 222, 128, 0.8);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(74, 222, 128, 0.8);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 30px rgba(74, 222, 128, 1);
+    }
+}
+
+.info-section {
+    text-align: center;
+    margin-bottom: 35px;
+    animation: slideDown 0.6s ease 0.4s both;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
     }
     to {
         opacity: 1;
@@ -48,89 +274,219 @@ body {
     }
 }
 
-.profile-header {
+.username {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 40px rgba(255, 255, 255, 0.5);
+}
+
+.tagline {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.divider {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+    margin: 20px auto 0;
+    border-radius: 2px;
+}
+
+.links-section {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 14px;
 }
 
-.avatar img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 4px solid var(--text-primary);
-    box-shadow: 0 5px 15px var(--shadow-color);
-    transition: box-shadow 0.3s ease;
-    margin-bottom: 15px;
-}
-
-.avatar img:hover {
-    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.6);
-}
-
-.text-content {
-    text-align: center;
-    text-shadow: 0 2px 5px var(--shadow-color);
-}
-
-.name {
-    font-size: 2.5em;
-    font-weight: bold;
-    margin: 10px 0;
-}
-
-.description {
-    font-size: 1.2em;
-    color: var(--text-secondary);
-}
-
-.social-links ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.link-btn {
+    position: relative;
     display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.button {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 15px 25px;
-    width: 300px;
-    color: var(--text-primary);
-    font-weight: bold;
+    gap: 14px;
+    padding: 18px 22px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    border-radius: 18px;
     text-decoration: none;
-    border-radius: 25px;
-    transition: transform 0.2s, box-shadow 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: white;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    animation: linkFadeIn 0.5s ease both;
 }
 
-.button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
-}
+.link-btn:nth-child(1) { animation-delay: 0.5s; }
+.link-btn:nth-child(2) { animation-delay: 0.6s; }
+.link-btn:nth-child(3) { animation-delay: 0.7s; }
+.link-btn:nth-child(4) { animation-delay: 0.8s; }
+.link-btn:nth-child(5) { animation-delay: 0.9s; }
+.link-btn:nth-child(6) { animation-delay: 1.0s; }
+.link-btn:nth-child(7) { animation-delay: 1.1s; }
 
-.button--telegram { background: linear-gradient(45deg, var(--color-telegram-start), var(--color-telegram-end)); }
-.button--tiktok { background: linear-gradient(45deg, var(--color-tiktok-start), var(--color-tiktok-end)); }
-.button--discord { background: linear-gradient(45deg, var(--color-discord-start), var(--color-discord-end)); }
-.button--steam { background: linear-gradient(45deg, var(--color-steam-start), var(--color-steam-end)); }
-
-.icon {
-    width: 20px;
-    height: 20px;
-    margin-left: 8px;
-}
-
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-        gap: 30px;
+@keyframes linkFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
     }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
 
-    .button {
-        width: 90vw;
-        max-width: 350px;
+.btn-bg {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: left 0.4s ease;
+}
+
+.link-btn:hover .btn-bg {
+    left: 0;
+}
+
+.link-btn:hover {
+    transform: translateX(8px) scale(1.02);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.link-btn:active {
+    transform: translateX(6px) scale(0.98);
+}
+
+.btn-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.btn-icon img {
+    width: 18px;
+    height: 18px;
+    filter: brightness(0) invert(1);
+}
+
+.link-btn:hover .btn-icon {
+    transform: rotate(360deg) scale(1.1);
+}
+
+.btn-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.btn-title {
+    font-size: 0.95rem;
+    letter-spacing: 0.3px;
+}
+
+.btn-arrow {
+    font-size: 1.4rem;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.link-btn:hover .btn-arrow {
+    opacity: 1;
+    transform: translateX(4px);
+}
+
+.telegram-btn:hover {
+    background: linear-gradient(135deg, rgba(34, 158, 217, 0.3), rgba(0, 136, 204, 0.3));
+    box-shadow: 0 8px 32px rgba(34, 158, 217, 0.4);
+}
+
+.tiktok-btn:hover {
+    background: linear-gradient(135deg, rgba(255, 0, 80, 0.3), rgba(0, 242, 234, 0.3));
+    box-shadow: 0 8px 32px rgba(255, 0, 80, 0.4);
+}
+
+.discord-btn:hover {
+    background: linear-gradient(135deg, rgba(88, 101, 242, 0.3), rgba(114, 137, 218, 0.3));
+    box-shadow: 0 8px 32px rgba(88, 101, 242, 0.4);
+}
+
+.steam-btn:hover {
+    background: linear-gradient(135deg, rgba(27, 40, 56, 0.3), rgba(102, 192, 244, 0.3));
+    box-shadow: 0 8px 32px rgba(102, 192, 244, 0.4);
+}
+
+@media (max-width: 600px) {
+    .profile-card {
+        padding: 35px 25px;
+        border-radius: 28px;
+    }
+    
+    .avatar-border {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .username {
+        font-size: 2rem;
+    }
+    
+    .tagline {
+        font-size: 0.9rem;
+    }
+    
+    .link-btn {
+        padding: 16px 18px;
+        font-size: 0.9rem;
+    }
+    
+    .btn-icon {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .btn-icon img {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+@media (max-width: 400px) {
+    .profile-card {
+        padding: 30px 20px;
+    }
+    
+    .username {
+        font-size: 1.8rem;
+    }
+    
+    .link-btn {
+        padding: 14px 16px;
+        gap: 12px;
+    }
+}
+
+@media (min-width: 992px) {
+    .glow {
+        display: none !important;
     }
 }
