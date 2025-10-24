@@ -1,22 +1,31 @@
+:root {
+    --background-start: #ff8c00;
+    --background-end: #ff5722;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+
+    --color-telegram-start: #4d8cf4;
+    --color-telegram-end: #1f7aff;
+    --color-tiktok-start: #ff0050;
+    --color-tiktok-end: #ff2d85;
+    --color-discord-start: #7289da;
+    --color-discord-end: #5865f2;
+    --color-steam-start: #1b2838;
+    --color-steam-end: #2a475e;
+}
+
 body {
     font-family: 'Noah', sans-serif;
     margin: 0;
-    color: white;
-    overflow: hidden;
-    height: 100vh;
+    color: var(--text-primary);
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#background-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
+    background: linear-gradient(135deg, var(--background-start), var(--background-end));
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .container {
@@ -24,25 +33,35 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 30px;
-    position: relative;
+    gap: 50px;
     animation: fadeIn 1s ease-in-out;
 }
 
 @keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .avatar img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    border: 4px solid white;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: 4px solid var(--text-primary);
+    box-shadow: 0 5px 15px var(--shadow-color);
     transition: box-shadow 0.3s ease;
     margin-bottom: 15px;
-    margin-left: 43px;
 }
 
 .avatar img:hover {
@@ -51,7 +70,7 @@ body {
 
 .text-content {
     text-align: center;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 2px 5px var(--shadow-color);
 }
 
 .name {
@@ -62,14 +81,16 @@ body {
 
 .description {
     font-size: 1.2em;
-    color: #ccc;
+    color: var(--text-secondary);
 }
 
-.links {
+.social-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin-left: 50px;
 }
 
 .button {
@@ -78,7 +99,7 @@ body {
     align-items: center;
     padding: 15px 25px;
     width: 300px;
-    color: white;
+    color: var(--text-primary);
     font-weight: bold;
     text-decoration: none;
     border-radius: 25px;
@@ -91,24 +112,25 @@ body {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
 }
 
-.popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    z-index: 1000;
+.button--telegram { background: linear-gradient(45deg, var(--color-telegram-start), var(--color-telegram-end)); }
+.button--tiktok { background: linear-gradient(45deg, var(--color-tiktok-start), var(--color-tiktok-end)); }
+.button--discord { background: linear-gradient(45deg, var(--color-discord-start), var(--color-discord-end)); }
+.button--steam { background: linear-gradient(45deg, var(--color-steam-start), var(--color-steam-end)); }
+
+.icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 8px;
 }
 
-.popup button {
-    background-color: #ff0050;
-    color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .button {
+        width: 90vw;
+        max-width: 350px;
+    }
 }
