@@ -23,7 +23,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+    background: linear-gradient(135deg, #E4831E 0%, #94530e 25%, #633200 50%, #B17601 75%, #FFAA00 100%);
     background-size: 400% 400%;
     z-index: -1;
     will-change: transform;
@@ -206,7 +206,7 @@ body::before {
     width: 140px;
     height: 140px;
     padding: 5px;
-    background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #4facfe);
+    background: linear-gradient(135deg, #B17601, #94530e, #633200, #B17601);
     background-size: 300% 300%;
     border-radius: 50%;
     animation: rotateBorder 6s linear infinite;
